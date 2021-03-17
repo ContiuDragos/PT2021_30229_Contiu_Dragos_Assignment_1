@@ -1,0 +1,238 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "Polynomial.Monom"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_913625844 { 
+   	label=Polynomial
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Monom913625844[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Monom</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   coeficient: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   coeficientIntDiv: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   exponent: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   integrationBoolean: boolean [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ compareTo(o: Object): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mul(a: Monom, b: Monom): Monom</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Polynom913625844[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Polynom</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   polynom: ArrayList&lt;Monom&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ add(m: Monom)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ clear()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mul(a: Polynom, b: Polynom): Polynom</TD></TR>
+<TR><TD ALIGN="LEFT" >+ resize()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ show()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sort()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_950484093 { 
+   	label=company
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Controller2071347952[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Controller</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   model: Model [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   view: View [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Model2071347952[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Model</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   monomList1: Polynom [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   monomList2: Polynom [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   polynom1: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   polynom2: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ add()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ breakFirstPolynom()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ breakSecondPolynom()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ deriv()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ div(): Polynom</TD></TR>
+<TR><TD ALIGN="LEFT" >+ integ()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ mul()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ reset()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ sub()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TestClass2071347952[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TestClass</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   model: Model [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ testClass()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+View2071347952[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)View</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   addition: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   derivate: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   division: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   integrate: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   labelFirstPol: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   labelResult: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   labelSecondPol: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   model: Model [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   multiplication: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   polynom1: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   polynom2: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   reset: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   resultTxt: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   subtraction: JButton [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># addAdditionListener(action: ActionListener)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addContent(labelFirstPol: JLabel)</TD></TR>
+<TR><TD ALIGN="LEFT" ># addDerivationListener(action: ActionListener)</TD></TR>
+<TR><TD ALIGN="LEFT" ># addDivisionListener(action: ActionListener)</TD></TR>
+<TR><TD ALIGN="LEFT" ># addIntegrationListener(action: ActionListener)</TD></TR>
+<TR><TD ALIGN="LEFT" ># addMultiplicationListener(action: ActionListener)</TD></TR>
+<TR><TD ALIGN="LEFT" ># addResetListener(action: ActionListener)</TD></TR>
+<TR><TD ALIGN="LEFT" ># addSubtractionListener(action: ActionListener)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ reset()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+Controller2071347952 -> Model2071347952[label="model
+[0..1]"];
+Controller2071347952 -> View2071347952[label="view
+[0..1]"];
+Model2071347952 -> Polynom913625844[label="monomList1
+[0..1]"];
+Model2071347952 -> Polynom913625844[label="monomList2
+[0..1]"];
+Polynom913625844 -> Monom913625844[label="polynom
+[0..*]"];
+TestClass2071347952 -> Model2071347952[label="model
+[0..1]"];
+View2071347952 -> Model2071347952[label="model
+[0..1]"];
+    
+}
+@enduml
